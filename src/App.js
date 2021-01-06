@@ -1,9 +1,14 @@
-import "./App.css";
+import './App.css';
+import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
+import Profile from './components/Profile/Profile';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Social Network</h1>
+    <div className='app-wrapper'>
+      <Header />
+      <NavBar />
+      <Profile />
     </div>
   );
 }
