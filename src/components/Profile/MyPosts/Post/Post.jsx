@@ -1,7 +1,7 @@
 import React from 'react';
 import cls from './Post.module.css';
 
-const Post = ({ message }) => (
+const Post = ({ message, likesCount }) => (
   <div>
     <div className={cls.item}>
       <img
@@ -12,6 +12,7 @@ const Post = ({ message }) => (
     </div>
     <div>
       <span>like</span>
+      {likesCount}
     </div>
   </div>
 );
