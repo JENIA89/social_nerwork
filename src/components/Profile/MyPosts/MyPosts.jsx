@@ -2,11 +2,7 @@ import React from 'react';
 import cls from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
-  const postData = [
-    { id: 1, message: 'Hi, how are you?', likesCount: 3 },
-    { id: 2, message: 'first post', likesCount: 6 },
-  ];
+const MyPosts = ({ posts }) => {
   return (
     <div className={cls.postsBlock}>
       <h2>My posts</h2>
@@ -19,7 +15,7 @@ const MyPosts = () => {
         </div>
       </div>
       <div className={cls.posts}>
-        {postData.map((item) => (
+        {posts.map((item) => (
           <Post
             message={item.message}
             id={item.id}
