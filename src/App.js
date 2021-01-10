@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
 
-function App({ state }) {
+function App({ state, addPost }) {
   return (
     <div className='app-wrapper'>
       <Header />
@@ -19,7 +19,7 @@ function App({ state }) {
         />
         <Route
           path='/profile'
-          render={() => <Profile state={state.profilePage} />}
+          render={() => <Profile state={state.profilePage} addPost={addPost} />}
         />
       </div>
     </div>
