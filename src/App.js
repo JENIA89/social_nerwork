@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
 
-function App({ state, addPost }) {
+function App({ state, addPost, updatePostText }) {
   return (
     <div className='app-wrapper'>
       <Header />
@@ -13,13 +13,17 @@ function App({ state, addPost }) {
       <div className='app-wrapper-content'>
         <Route
           path='/dialogs'
-          render={() => (
-            <Dialogs state={state.dialogsPage} state={state.dialogsPage} />
-          )}
+          render={() => <Dialogs state={state.dialogsPage} />}
         />
         <Route
           path='/profile'
-          render={() => <Profile state={state.profilePage} addPost={addPost} />}
+          render={() => (
+            <Profile
+              profilePage={state.profilePage}
+              addPost={addPost}
+              updatePostText={updatePostText}
+            />
+          )}
         />
       </div>
     </div>

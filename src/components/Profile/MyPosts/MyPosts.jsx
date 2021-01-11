@@ -2,18 +2,22 @@ import React from 'react';
 import cls from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ posts, addPost }) => {
+const MyPosts = ({ posts, newPostText, addPost, updatePostText }) => {
   const refPost = React.createRef();
   const addNewPost = () => {
+    addPost();
+  };
+
+  const onPostChange = () => {
     const text = refPost.current.value;
-    addPost(text);
+    updatePostText(text);
   };
   return (
     <div className={cls.postsBlock}>
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea ref={refPost}></textarea>
+          <textarea ref={refPost} onChange={onPostChange} value={newPostText} />
         </div>
         <div>
           <button onClick={addNewPost}>Add post</button>

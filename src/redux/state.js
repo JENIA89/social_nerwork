@@ -1,9 +1,14 @@
+let reRenderTree = () => {
+  console.log('state was change');
+};
+
 const state = {
   profilePage: {
     postData: [
       { id: 1, message: 'Hi, how are you?', likesCount: 3 },
       { id: 2, message: 'first post', likesCount: 6 },
     ],
+    newPostText: 'Введите текст поста...',
   },
   dialogsPage: {
     messagesData: [
@@ -20,13 +25,24 @@ const state = {
   },
 };
 
-export const addPost = (postMessage) => {
+export const addPost = () => {
   const newPost = {
     id: 3,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 2,
   };
   state.profilePage.postData.push(newPost);
+  state.profilePage.newPostText = '';
+  reRenderTree(state);
+};
+
+export const updatePostText = (text) => {
+  state.profilePage.newPostText = text;
+  reRenderTree(state);
+};
+
+export const subscribe = (observer) => {
+  reRenderTree = observer;
 };
 
 export default state;
