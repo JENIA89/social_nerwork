@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
 import Profile from './components/Profile/Profile';
 
-function App({ dispatch, state, dialogsPage }) {
+function App({ dispatch, state }) {
   return (
     <div className='app-wrapper'>
       <Header />
@@ -13,7 +13,9 @@ function App({ dispatch, state, dialogsPage }) {
       <div className='app-wrapper-content'>
         <Route
           path='/dialogs'
-          render={() => <Dialogs state={state.dialogsPage} />}
+          render={() => (
+            <Dialogs state={state.dialogsPage} dispatch={dispatch} />
+          )}
         />
         <Route
           path='/profile'

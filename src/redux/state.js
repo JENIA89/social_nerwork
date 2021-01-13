@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT';
 
 const store = {
   _state: {
@@ -22,6 +24,7 @@ const store = {
         { id: 3, name: 'John' },
         { id: 4, name: 'Alex' },
       ],
+      newMessageText: '',
     },
   },
   getState() {
@@ -43,6 +46,17 @@ const store = {
     } else if (action.type === 'UPDATE_POST_TEXT') {
       this._state.profilePage.newPostText = action.payload;
       this._reRenderTree(this._state);
+    } else if (action.type === 'UPDATE_MESSAGE_TEXT') {
+      this._state.dialogsPage.newMessageText = action.payload;
+      this._reRenderTree(this._state);
+    } else if (action.type === 'ADD_MESSAGE') {
+      const newMessage = {
+        id: 4,
+        message: this._state.dialogsPage.newMessageText,
+      };
+      this._state.dialogsPage.messagesData.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._reRenderTree(this._state);
     }
   },
   subscribe(observer) {
@@ -52,8 +66,15 @@ const store = {
 
 export const addNewPostActionCreator = () => ({ type: ADD_POST });
 
+export const addNewMessageActionCreator = () => ({ type: ADD_MESSAGE });
+
 export const updatePostActionCreator = (data) => ({
   type: UPDATE_POST_TEXT,
+  payload: data,
+});
+
+export const updateMessageActionCreator = (data) => ({
+  type: UPDATE_MESSAGE_TEXT,
   payload: data,
 });
 
