@@ -1,3 +1,6 @@
+import dialogsReducer from './reducers/dialogsReducer';
+import profilereducer from './reducers/profileReducer';
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
 const ADD_MESSAGE = 'ADD_MESSAGE';
@@ -34,30 +37,9 @@ const store = {
     console.log('state was change');
   },
   dispatch(action) {
-    if (action.type === 'ADD_POST') {
-      const newPost = {
-        id: 3,
-        message: this._state.profilePage.newPostText,
-        likesCount: 2,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._reRenderTree(this._state);
-    } else if (action.type === 'UPDATE_POST_TEXT') {
-      this._state.profilePage.newPostText = action.payload;
-      this._reRenderTree(this._state);
-    } else if (action.type === 'UPDATE_MESSAGE_TEXT') {
-      this._state.dialogsPage.newMessageText = action.payload;
-      this._reRenderTree(this._state);
-    } else if (action.type === 'ADD_MESSAGE') {
-      const newMessage = {
-        id: 4,
-        message: this._state.dialogsPage.newMessageText,
-      };
-      this._state.dialogsPage.messagesData.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._reRenderTree(this._state);
-    }
+    profilereducer(this._state.profilePage, action);
+    dialogsReducer(this._state.dialogsPage, action);
+    this._reRenderTree(this._state);
   },
   subscribe(observer) {
     this._reRenderTree = observer;
