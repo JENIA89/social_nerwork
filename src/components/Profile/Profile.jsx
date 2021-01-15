@@ -1,12 +1,12 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import cls from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = ({ dispatch, profilePage }) => (
   <div className={cls.content}>
     <ProfileInfo />
-    <MyPosts
+    <MyPostsContainer
       posts={profilePage.postData}
       newPostText={profilePage.newPostText}
       dispatch={dispatch}

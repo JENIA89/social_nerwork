@@ -1,30 +1,30 @@
 import React from 'react';
-import {
-  addNewPostActionCreator,
-  updatePostActionCreator,
-} from '../../../redux/state';
 import cls from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ dispatch, posts, newPostText }) => {
+const MyPosts = ({ addNewPost, onPostChange, posts, newPostText }) => {
   const refPost = React.createRef();
-  const addNewPost = () => {
-    dispatch(addNewPostActionCreator());
+  const onAddNewPost = () => {
+    addNewPost();
   };
 
-  const onPostChange = () => {
+  const onPostChangeHandler = () => {
     const text = refPost.current.value;
-    dispatch(updatePostActionCreator(text));
+    onPostChange(text);
   };
   return (
     <div className={cls.postsBlock}>
       <h2>My posts</h2>
       <div>
         <div>
-          <textarea ref={refPost} onChange={onPostChange} value={newPostText} />
+          <textarea
+            ref={refPost}
+            onChange={onPostChangeHandler}
+            value={newPostText}
+          />
         </div>
         <div>
-          <button onClick={addNewPost}>Add post</button>
+          <button onClick={onAddNewPost}>Add post</button>
         </div>
       </div>
       <div className={cls.posts}>

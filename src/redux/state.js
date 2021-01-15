@@ -1,11 +1,6 @@
 import dialogsReducer from './reducers/dialogsReducer';
 import profilereducer from './reducers/profileReducer';
 
-const ADD_POST = 'ADD_POST';
-const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT';
-
 const store = {
   _state: {
     profilePage: {
@@ -45,19 +40,5 @@ const store = {
     this._reRenderTree = observer;
   },
 };
-
-export const addNewPostActionCreator = () => ({ type: ADD_POST });
-
-export const addNewMessageActionCreator = () => ({ type: ADD_MESSAGE });
-
-export const updatePostActionCreator = (data) => ({
-  type: UPDATE_POST_TEXT,
-  payload: data,
-});
-
-export const updateMessageActionCreator = (data) => ({
-  type: UPDATE_MESSAGE_TEXT,
-  payload: data,
-});
 
 export default store;
