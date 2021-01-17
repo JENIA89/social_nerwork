@@ -11,17 +11,19 @@ const initState = {
 const profilereducer = (state = initState, action) => {
   switch (action.type) {
     case ADD_POST:
-      const newPost = {
-        id: 3,
-        message: state.newPostText,
-        likesCount: 2,
+      return {
+        ...state,
+        postData: [
+          ...state.postData,
+          { id: 3, message: state.newPostText, likesCount: 2 },
+        ],
+        newPostText: '',
       };
-      state.postData.push(newPost);
-      state.newPostText = '';
-      return state;
     case UPDATE_POST_TEXT:
-      state.newPostText = action.payload;
-      return state;
+      return {
+        ...state,
+        newPostText: action.payload,
+      };
     default:
       return state;
   }

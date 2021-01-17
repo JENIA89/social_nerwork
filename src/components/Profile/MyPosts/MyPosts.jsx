@@ -2,15 +2,15 @@ import React from 'react';
 import cls from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({ addNewPost, onPostChange, posts, newPostText }) => {
+const MyPosts = (props) => {
   const refPost = React.createRef();
   const onAddNewPost = () => {
-    addNewPost();
+    props.addNewPost();
   };
 
   const onPostChangeHandler = () => {
     const text = refPost.current.value;
-    onPostChange(text);
+    props.onPostChange(text);
   };
   return (
     <div className={cls.postsBlock}>
@@ -20,7 +20,7 @@ const MyPosts = ({ addNewPost, onPostChange, posts, newPostText }) => {
           <textarea
             ref={refPost}
             onChange={onPostChangeHandler}
-            value={newPostText}
+            value={props.newPostText}
           />
         </div>
         <div>
@@ -28,7 +28,7 @@ const MyPosts = ({ addNewPost, onPostChange, posts, newPostText }) => {
         </div>
       </div>
       <div className={cls.posts}>
-        {posts.map((item) => (
+        {props.postData.map((item) => (
           <Post
             message={item.message}
             id={item.id}

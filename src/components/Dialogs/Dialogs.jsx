@@ -1,24 +1,26 @@
 import React from 'react';
 import cls from './Dialogs.module.css';
+import Message from './Message/Message';
+import DialogItem from './DialogItem/DialogItem';
 
-const Dialogs = ({
-  onSendMessage,
-  messagesElemHandler,
-  dialogsElemHandler,
-  onMessageChange,
-  newMessageText,
-}) => {
-  const dialogsElem = () => dialogsElemHandler();
+const Dialogs = (props) => {
+  const dialogsElem = () =>
+    props.dialogsData.map((item) => (
+      <DialogItem name={item.name} id={item.id} key={item.id} />
+    ));
 
-  const messagesElem = () => messagesElemHandler();
+  const messagesElem = () =>
+    props.messagesData.map((item) => (
+      <Message message={item.message} id={item.id} key={item.id} />
+    ));
 
   const onMessageChangeHandler = (e) => {
     let text = e.target.value;
-    onMessageChange(text);
+    props.onMessageChange(text);
   };
 
   const onSendMessageHandler = () => {
-    onSendMessage();
+    props.onSendMessage();
   };
   return (
     <div className={cls.dialogs}>
@@ -29,7 +31,7 @@ const Dialogs = ({
           <div>
             <textarea
               onChange={onMessageChangeHandler}
-              value={newMessageText}
+              value={props.newMessageText}
               placeholder='Enter your message'
             ></textarea>
           </div>
