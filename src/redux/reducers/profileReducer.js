@@ -31,9 +31,9 @@ const profilereducer = (state = initState, action) => {
 
 export default profilereducer;
 
-export const addNewPostActionCreator = () => ({ type: ADD_POST });
+export const addNewPost = () => ({ type: ADD_POST });
 
-export const updatePostActionCreator = (data) => ({
+export const updatePost = (data) => ({
   type: UPDATE_POST_TEXT,
   payload: data,
 });
