@@ -49,7 +49,7 @@ class UserContainer extends React.Component {
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
             onChangePage={this.onChangePage}
-            unfollow={this.props.unfollow}
+            unFollow={this.props.unFollow}
             follow={this.props.follow}
             pageSize={this.props.pageSize}
           />
@@ -69,16 +69,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => dispatch(follow(userId)),
-    unfollow: (userId) => dispatch(unFollow(userId)),
-    getUsers: (users) => dispatch(getUsers(users)),
-    setCurrentPage: (currentNum) => dispatch(setCurrentPage(currentNum)),
-    setTotalUsersCount: (totalCount) =>
-      dispatch(setTotalUsersCount(totalCount)),
-    setIsLoading: (load) => dispatch(setIsLoading(load)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unFollow,
+  getUsers,
+  getUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsLoading,
+})(UserContainer);
