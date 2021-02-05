@@ -3,9 +3,9 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import cls from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => (
+const Profile = (props) => (
   <div className={cls.content}>
-    <ProfileInfo />
+    <ProfileInfo profile={props.profile} />
     <MyPostsContainer />
   </div>
 );

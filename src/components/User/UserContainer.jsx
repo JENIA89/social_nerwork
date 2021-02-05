@@ -73,7 +73,6 @@ export default connect(mapStateToProps, {
   follow,
   unFollow,
   getUsers,
-  getUsers,
   setCurrentPage,
   setTotalUsersCount,
   setIsLoading,
