@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   follow,
@@ -10,32 +9,27 @@ import {
   unFollow,
 } from '../../redux/reducers/userReducer';
 import User from './User';
+import { usersAPI } from '../../api/api';
 
 class UserContainer extends React.Component {
   componentDidMount() {
     this.props.setIsLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
+    usersAPI
+      .getAllUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
         this.props.setIsLoading(false);
-        this.props.getUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.getUsers(data.items);
+        this.props.setTotalUsersCount(data.totalCount);
       });
   }
 
   onChangePage = (pageNum) => {
     this.props.setCurrentPage(pageNum);
     this.props.setIsLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`
-      )
-      .then((response) => {
-        this.props.setIsLoading(false);
-        this.props.getUsers(response.data.items);
-      });
+    usersAPI.getAllUsers(pageNum, this.props.pageSize).then((data) => {
+      this.props.setIsLoading(false);
+      this.props.getUsers(data.items);
+    });
   };
 
   render() {
