@@ -4,6 +4,7 @@ const GET_USERS = 'GET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const IS_LOADING = 'IS_LOADING';
+const TOGGLE_LOADING = 'TOGGLE_LOADING';
 
 const initState = {
   users: [],
@@ -11,6 +12,7 @@ const initState = {
   totalUsersCount: 0,
   currentPage: 1,
   loading: false,
+  toggleLoading: [],
 };
 
 const userReducer = (state = initState, action) => {
@@ -81,5 +83,9 @@ export const setTotalUsersCount = (totalCount) => ({
 });
 export const setIsLoading = (load) => ({
   type: IS_LOADING,
+  payload: load,
+});
+export const toggleLoading = (load) => ({
+  type: TOGGLE_LOADING,
   payload: load,
 });
