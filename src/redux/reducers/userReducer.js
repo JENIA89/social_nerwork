@@ -4,7 +4,7 @@ const GET_USERS = 'GET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const IS_LOADING = 'IS_LOADING';
-const TOGGLE_LOADING = 'TOGGLE_LOADING';
+const TOGGLE_LOADING_PROGRESS = 'TOGGLE_LOADING_PROGRESS';
 
 const initState = {
   users: [],
@@ -86,6 +86,6 @@ export const setIsLoading = (load) => ({
   payload: load,
 });
 export const toggleLoading = (load) => ({
-  type: TOGGLE_LOADING,
+  type: TOGGLE_LOADING_PROGRESS,
   payload: load,
 });
